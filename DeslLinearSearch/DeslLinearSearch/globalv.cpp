@@ -4,7 +4,7 @@ bool firstRoundActive;
 
 ALIGNED_TYPE_(u16,8) r_od_l[ROUND_N][SBOX_NUMBER];
 ALIGNED_TYPE_(u16,8) r_od_r[ROUND_N][SBOX_NUMBER];
-si8 r_an[ROUND_N];
+si16 r_an[ROUND_N];
 si16 r_ai[ROUND_N][SBOX_NUMBER];
 prType r_pr[ROUND_N];
 

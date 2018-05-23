@@ -65,7 +65,7 @@ bool isValid(__m128i tmp){
 }
 
 void setAndPrint(){
-	//Bnc[Round-1]=r_pr[Round-1];
+	Bnc[Round-1]=r_pr[Round-1];
 	
 	for(int r=0;r<Round;r++){
 		for(int si=0;si<SBOX_NUMBER;si++){
@@ -104,7 +104,7 @@ void getInfo(int r,__m128i tmp){
 
 void Round__(int r,int j,prType pr_round,__m128i tmp0){
 	si8 an=r_an[r-1];
-	si16 ai=r_ai[r-1][j];//第j个活跃S盒下标
+	si8 ai=r_ai[r-1][j];//第j个活跃S盒下标
 	si8 an_remain=an-j-1;
 	prType prob;
 	si8 s;
@@ -134,9 +134,10 @@ void Round__(int r,int j,prType pr_round,__m128i tmp0){
 }
 
 void Round_N_(int j,prType pr_round){
+	
 	si8 an=r_an[Round-1];
-	si16 ai=r_ai[Round-1][j];//第j个活跃S盒下标
-	si8 an_remain=an-j-1;
+	si8 ai=r_ai[Round-1][j];//第j个活跃S盒下标
+	si8 an_remain=an-j-1;//fprintf(fp_trails,"%d:%d:%f ",ai,j,pr_round);
 	prType prob;
 	u16 idv=r_od_l[Round-1][ai];
 
@@ -168,7 +169,6 @@ void Round_(int r){
 	_mm_store_si128(idp,tmp0);
 	getInfo(r-1,*idp);
 	
-	
 	if(r_an[r-1]==0){
 		r_pr[r-1]=r_pr[r-2];
 		_mm_store_si128(odp,tmp1);
@@ -180,6 +180,7 @@ void Round_(int r){
 	}
 
 	if(r==Round){
+		//setAndPrint();
 		Round_N_(0,0);//1是起始活跃S盒，0是起始概率
 	}else{
 		Round__(r,0,0,tmp1);//r是轮数，0是起始活跃S盒，0是起始概率，tmp1是起始输出差分

@@ -34,7 +34,7 @@ using namespace std;
 #define SBOX_NUMBER (8)
 #define SBOX_INPUTS_NUMBER (64)
 #define SBOX_OUTPUTS_NUMBER (16)
-#define ROUND_N (16)
+#define ROUND_N (20)
 #define PR_NUMBER (10)
 
 #define WMAX_CIPHER (64)
